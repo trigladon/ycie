@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import environ
+
+env = environ.Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2at-g_6i^k$a&(veqjiokn5gxj=_+pmj=o$j15j!2%d2n(2^p#'
+SECRET_KEY = env.get_value("SECRET_KEY", default=os.environ.get("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account'
 ]
 
 MIDDLEWARE = [
@@ -75,10 +79,28 @@ WSGI_APPLICATION = 'ycie.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        "ENGINE": 'django.db.backends.postgresql_psycopg2',
+        "NAME": env.get_value("BD_NAME", default=os.environ.get("BD_NAME")),
+        "USER": env.get_value("DB_USER", default=os.environ.get("DB_USER")),
+        "PASSWORD": env.get_value("DB_PASSWORD", default=os.environ.get("DB_PASSWORD")),
+        "HOST": env.get_value("DB_HOST", default=os.environ.get("DB_HOST")),
+        "PORT": env.get_value("DB_PORT", default=os.environ.get("DB_PORT")),
     }
 }
+
+CACHES = {
+    "default": {
+        "BACKEND": env.get_value("CACHE_BACKEND", default=os.environ.get("CACHE_BACKEND")),
+        "LOCATION": env.get_value("CACHE_LOCATION", default=os.environ.get("CACHE_LOCATION")),
+        "OPTIONS": {
+            "CLIENT_CLASS": env.get_value("CACHE_CLIENT_CLASS", default=os.environ.get("CACHE_CLIENT_CLASS")),
+        }
+    }
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
+AUTH_USER_MODEL = "account.User"
 
 
 # Password validation
