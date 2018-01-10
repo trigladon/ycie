@@ -28,7 +28,7 @@ SECRET_KEY = env.get_value("SECRET_KEY", default=os.environ.get("SECRET_KEY"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -59,13 +59,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ycie.urls'
 
+
 TEMPLATES = [
     {
         "BACKEND": "django_jinja.backend.Jinja2",
         "APP_DIRS": True,
         "OPTIONS": {
+            'autoescape': True,
             "match_extension": ".html",
             "app_dirname": os.path.join(BASE_DIR, 'templates', 'jinja'),
+            "translation_engine": "django.utils.translation",
             "extensions": [
                 "jinja2.ext.do",
                 "jinja2.ext.loopcontrols",
@@ -84,9 +87,6 @@ TEMPLATES = [
                 "backend": "django_jinja.cache.BytecodeCache",
                 "enabled": False,
             },
-            # "autoescape": True,
-            # "auto_reload": DEBUG,
-            # "translation_engine": "django.utils.translation",
         }
     },
     {
@@ -103,6 +103,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'ycie.wsgi.application'
 
