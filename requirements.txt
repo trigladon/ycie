@@ -4,8 +4,11 @@ celery==4.1.0
 Django==2.0.1
 django-celery==3.2.2
 django-environ==0.4.4
+django-jinja==2.4.1
 django-redis==4.8.0
+Jinja2==2.10
 kombu==4.1.0
+MarkupSafe==1.0
 memoized-property==1.0.3
 psycopg2==2.7.3.2
 pytz==2017.3
