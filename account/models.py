@@ -1,15 +1,19 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractUser
 
 from memoized_property import memoized_property
 
+from application.constants import CONTACT_MODEL_USER, CONTACT_MODEL_COMPANY
+from application.models import Contact, City
 from .manager import UserManager
-from .constants import *
 
 
 class User(AbstractUser):
+    """
+    User model    
+    """
     username = models.CharField(_('username'), max_length=150, unique=False, blank=True, null=True)
     email = models.EmailField(_('email address'), blank=False, unique=True, null=False)
 
@@ -40,6 +44,9 @@ class User(AbstractUser):
 
 
 class Role(models.Model):
+    """
+    Role model
+    """
     name = models.CharField(_('Name'), max_length=15, null=False)
     title = models.CharField(_('Title'), max_length=15, unique=True, null=False)
 
@@ -55,47 +62,26 @@ class Role(models.Model):
         }
 
 
-class Contact(models.Model):
-    TYPES = (
-        (CONTACT_TYPE_EMAIL, _('Email')),
-        (CONTACT_TYPE_FAX, _('FAX')),
-        (CONTACT_TYPE_LEGAL_ADDRESS, _('Legal address')),
-        (CONTACT_TYPE_PHYSICAL_ADDRESS, _('Physical address')),
-    )
-
-    MODEL_TYPES = (
-        (CONTACT_MODEL_COMPANY, _('Company')),
-        (CONTACT_MODEL_USER, _('User'))
-    )
-
-    id_object = models.IntegerField(_('Id object'), blank=False, null=False)
-    type = models.CharField(_('Type'), choices=TYPES, null=False, max_length=20)
-    model = models.CharField(_('Model'), choices=MODEL_TYPES, null=False, max_length=20)
-    data = models.CharField(_('Data'), null=False, max_length=1023)
-    create_date = models.DateTimeField(_('Create date'), default=timezone.now)
-
-    class Meta:
-        verbose_name = _("Contact")
-        verbose_name_plural = _("Contacts")
-
-    def to_dict(self):
-        return {
-            'id': self.pk,
-            'id_object': self.id_object,
-            'type': self.type,
-            'model': self.model,
-            'data': self.data,
-            'create_date': self.create_date
-        }
-
-
 class Company(models.Model):
+    """
+    Company model
+    """
     name = models.CharField(_('Organization name'), max_length=511, null=False)
     unp = models.CharField(_('UNP'), max_length=15, null=False)
+    city_id = models.ForeignKey(City, verbose_name=_('City'), null=True, blank=False, on_delete=models.SET_NULL)
+    update_date = models.DateTimeField(_('Update date'), default=timezone.now, editable=False)
+    create_date = models.DateTimeField(_('Create date'), default=timezone.now, editable=False)
 
     class Meta:
         verbose_name = _("Company")
         verbose_name_plural = _("Companies")
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        if self.pk:
+            self.update_date = timezone.now()
+        return super(Company, self).save(force_insert=force_insert, force_update=force_update, using=using,
+                                         update_fields=update_fields)
 
     @memoized_property
     def contacts(self):
@@ -108,5 +94,6 @@ class Company(models.Model):
         return {
             'id': self.pk,
             'name': self.name,
-            'unp': self.unp
+            'unp': self.unp,
+            'city_id': self.city_id
         }

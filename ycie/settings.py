@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django_jinja',
 
     'account',
-    'application'
+    'application',
+    'house',
+    'statistic'
 
 ]
 
