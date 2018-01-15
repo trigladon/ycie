@@ -67,7 +67,7 @@ class Contact(models.Model):
     model = models.CharField(_('Model'), choices=MODEL_TYPES, null=False, max_length=20)
     data = models.CharField(_('Data'), null=False, max_length=1023)
     city_id = models.ForeignKey(City, null=True, blank=True, on_delete=models.SET_NULL)
-    create_date = models.DateTimeField(_('Create date'), default=timezone.now)
+    create_date = models.DateTimeField(_('Create date'), default=timezone.now, editable=False)
 
     class Meta:
         verbose_name = _("Contact")
