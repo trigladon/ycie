@@ -43,25 +43,6 @@ class User(AbstractUser):
         }
 
 
-class Role(models.Model):
-    """
-    Role model
-    """
-    name = models.CharField(_('Name'), max_length=15, null=False)
-    title = models.CharField(_('Title'), max_length=15, unique=True, null=False)
-
-    class Meta:
-        verbose_name = _("Role")
-        verbose_name_plural = _("Roles")
-
-    def to_dict(self):
-        return {
-            'id': self.pk,
-            'name': self.name,
-            'title': self.title,
-        }
-
-
 class Company(models.Model):
     """
     Company model
