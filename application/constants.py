@@ -7,3 +7,6 @@ CONTACT_TYPE_ZIP = 'zip'
 
 CONTACT_MODEL_USER = 'user'
 CONTACT_MODEL_COMPANY = 'company'
+
+ASSET_TYPE_CATEGORY_NEWS = "category_news"
+ASSET_TYPE_NEWS = "news"

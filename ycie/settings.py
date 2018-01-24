@@ -174,5 +174,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
+STATIC_URL_PATH = 'static'
+MEDIA_URL_PATH = 'media'
+STATICFILES_LOCATION = STATIC_URL_PATH
+MEDIA_LOCATION = MEDIA_URL_PATH
 
-STATIC_URL = '/static/'
+STATIC_URL = env.get_value("STATIC_URL", default=os.environ.get("STATIC_URL"))
+if STATIC_URL:
+    STATIC_URL = "".join(['/', STATIC_URL_PATH, '/'])
+
+MEDIA_URL = env.get_value("MEDIA_URL", default=os.environ.get("MEDIA_URL"))
+if MEDIA_URL:
+    MEDIA_URL = "".join(['/', MEDIA_URL_PATH, '/'])
+
