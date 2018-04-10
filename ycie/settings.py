@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'account',
     'application',
     'house',
-    'statistic'
+    'news',
+    # 'statistic'
 
 ]
 

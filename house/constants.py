@@ -1,5 +1,5 @@
-ROLE_MANAGER = 'manager'
-ROLE_ADMIN = 'admin'
+GOVERNMENT_ROLE_MANAGER = 'manager'
+GOVERNMENT_ROLE_ADMIN = 'admin'
 
 APARTMENT_ROLE_OWNER = 'owner'
 APARTMENT_ROLE_TENANT = 'tenant'
