@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from house.models import House
 
 
-class CategoryNews(models.Model):
+class Category(models.Model):
     """
     Model for news category
     """
@@ -25,14 +25,16 @@ class CategoryNews(models.Model):
              update_fields=None):
         if self.pk:
             self.update_date = timezone.now()
-        return super(CategoryNews, self).save(force_insert=force_insert, force_update=force_update, using=using,
-                                              update_fields=update_fields)
+        return super(Category, self).save(force_insert=force_insert, force_update=force_update, using=using,
+                                          update_fields=update_fields)
 
 
 class News(models.Model):
     """
     Model for news
     """
+    category = models.ForeignKey(Category, null=True, default=None, verbose_name=_('Category'),
+                                 on_delete=models.CASCADE)
     title = models.CharField(verbose_name=_('Title'), null=False, max_length=1023)
     shot_description = models.TextField(verbose_name=_('Shot description'), null=True)
     description = models.TextField(verbose_name=_('Description'), null=True)
