@@ -13,6 +13,7 @@ class House(models.Model):
     """
     company = models.ForeignKey(Company, null=True, on_delete=models.SET_NULL, verbose_name=_('Company'))
     address = models.CharField(_('Address'), null=False, blank=False, max_length=511)
+    is_multi_apartments = models.BooleanField(_('Is multi apartments?'), default=False)
     update_date = models.DateTimeField(_('Update date'), default=timezone.now, editable=False)
     create_date = models.DateTimeField(_('Create date'), default=timezone.now, editable=False)
 
@@ -23,7 +24,8 @@ class House(models.Model):
     def to_dict(self):
         return {
             'id': self.pk,
-            'address': self.address
+            'address': self.address,
+            'is_multi_apartments': self.is_multi_apartments
         }
 
 
@@ -101,9 +103,18 @@ class ApartmentUser(models.Model):
         (APARTMENT_ROLE_LODGER, _('Lodger')),
     )
 
+    APARTMENT_STATUS = (
+        (APARTMENT_STATUS_UNDER_CONSIDERATION_GOVERNMENT, _('Under consideration in a government')),
+        (APARTMENT_STATUS_UNDER_CONSIDERATION_HOUSE, _('Under consideration in a house owner')),
+        (APARTMENT_STATUS_BLOCKED, _('Blocked')),
+        (APARTMENT_STATUS_BLOCKED, _('Accepted')),
+    )
+
     apartment = models.ForeignKey(Apartment, verbose_name=_('Apartment'), null=False, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('User'), null=False, on_delete=models.CASCADE)
     role = models.CharField(_('Role'), choices=MODEL_ROLES, default=APARTMENT_ROLE_LODGER, null=False, max_length=15)
+    status = models.CharField(_('Status'), choices=APARTMENT_STATUS,
+                              default=APARTMENT_STATUS_UNDER_CONSIDERATION_GOVERNMENT, null=False, max_length=55),
     date_joined = models.DateTimeField(_('Date joined '), default=timezone.now, editable=False)
 
     def to_dict(self):

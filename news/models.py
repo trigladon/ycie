@@ -18,8 +18,8 @@ class Category(models.Model):
     create_date = models.DateTimeField(_('Create date'), default=timezone.now, editable=False)
 
     class Meta:
-        verbose_name = _("CategoryNews")
-        verbose_name_plural = _("CategoriesNews")
+        verbose_name = _("Category")
+        verbose_name_plural = _("Categories")
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
