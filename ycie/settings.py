@@ -11,9 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import environ
-
-env = environ.Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.get_value("SECRET_KEY", default=os.environ.get("SECRET_KEY"))
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', default=False)
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -42,12 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_jinja',
 
-    'account',
-    'application',
-    'house',
-    'news',
-    # 'statistic'
-
+    'application'
 ]
 
 MIDDLEWARE = [
@@ -65,30 +57,30 @@ ROOT_URLCONF = 'ycie.urls'
 
 TEMPLATES = [
     {
-        "BACKEND": "django_jinja.backend.Jinja2",
-        "APP_DIRS": True,
-        "OPTIONS": {
+        'BACKEND': 'django_jinja.backend.Jinja2',
+        'APP_DIRS': True,
+        'OPTIONS': {
             'autoescape': True,
-            "match_extension": ".html",
-            "app_dirname": os.path.join(BASE_DIR, 'templates', 'jinja'),
-            "translation_engine": "django.utils.translation",
-            "extensions": [
-                "jinja2.ext.do",
-                "jinja2.ext.loopcontrols",
-                "jinja2.ext.with_",
-                "jinja2.ext.i18n",
-                "jinja2.ext.autoescape",
-                "django_jinja.builtins.extensions.CsrfExtension",
-                "django_jinja.builtins.extensions.CacheExtension",
-                "django_jinja.builtins.extensions.TimezoneExtension",
-                "django_jinja.builtins.extensions.UrlsExtension",
-                "django_jinja.builtins.extensions.StaticFilesExtension",
-                "django_jinja.builtins.extensions.DjangoFiltersExtension",
+            'match_extension': '.html',
+            'app_dirname': os.path.join(BASE_DIR, 'templates', 'jinja'),
+            'translation_engine': 'django.utils.translation',
+            'extensions': [
+                'jinja2.ext.do',
+                'jinja2.ext.loopcontrols',
+                'jinja2.ext.with_',
+                'jinja2.ext.i18n',
+                'jinja2.ext.autoescape',
+                'django_jinja.builtins.extensions.CsrfExtension',
+                'django_jinja.builtins.extensions.CacheExtension',
+                'django_jinja.builtins.extensions.TimezoneExtension',
+                'django_jinja.builtins.extensions.UrlsExtension',
+                'django_jinja.builtins.extensions.StaticFilesExtension',
+                'django_jinja.builtins.extensions.DjangoFiltersExtension',
             ],
-            "bytecode_cache": {
-                "name": "default",
-                "backend": "django_jinja.cache.BytecodeCache",
-                "enabled": False,
+            'bytecode_cache': {
+                'name': 'default',
+                'backend': 'django_jinja.cache.BytecodeCache',
+                'enabled': False,
             },
         }
     },
@@ -116,28 +108,28 @@ WSGI_APPLICATION = 'ycie.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": 'django.db.backends.postgresql_psycopg2',
-        "NAME": env.get_value("BD_NAME", default=os.environ.get("BD_NAME")),
-        "USER": env.get_value("DB_USER", default=os.environ.get("DB_USER")),
-        "PASSWORD": env.get_value("DB_PASSWORD", default=os.environ.get("DB_PASSWORD")),
-        "HOST": env.get_value("DB_HOST", default=os.environ.get("DB_HOST")),
-        "PORT": env.get_value("DB_PORT", default=os.environ.get("DB_PORT")),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('BD_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
 CACHES = {
-    "default": {
-        "BACKEND": env.get_value("CACHE_BACKEND", default=os.environ.get("CACHE_BACKEND")),
-        "LOCATION": env.get_value("CACHE_LOCATION", default=os.environ.get("CACHE_LOCATION")),
-        "OPTIONS": {
-            "CLIENT_CLASS": env.get_value("CACHE_CLIENT_CLASS", default=os.environ.get("CACHE_CLIENT_CLASS")),
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': os.environ.get('CACHE_LOCATION'),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
 }
 
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
-AUTH_USER_MODEL = "account.User"
+AUTH_USER_MODEL = 'application.User'
 
 
 # Password validation
@@ -173,6 +165,15 @@ USE_L10N = True
 USE_TZ = True
 
 
+if DEBUG:
+    MIDDLEWARE = MIDDLEWARE + [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ]
+
+    INSTALLED_APPS = INSTALLED_APPS + [
+        'debug_toolbar',
+    ]
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL_PATH = 'static'
@@ -180,11 +181,11 @@ MEDIA_URL_PATH = 'media'
 STATICFILES_LOCATION = STATIC_URL_PATH
 MEDIA_LOCATION = MEDIA_URL_PATH
 
-STATIC_URL = env.get_value("STATIC_URL", default=os.environ.get("STATIC_URL"))
-if STATIC_URL:
-    STATIC_URL = "".join(['/', STATIC_URL_PATH, '/'])
+STATIC_URL = os.environ.get('STATIC_URL')
+if not STATIC_URL:
+    STATIC_URL = ''.join(['/', STATIC_URL_PATH, '/'])
 
-MEDIA_URL = env.get_value("MEDIA_URL", default=os.environ.get("MEDIA_URL"))
-if MEDIA_URL:
-    MEDIA_URL = "".join(['/', MEDIA_URL_PATH, '/'])
+MEDIA_URL = os.environ.get('MEDIA_URL')
+if not MEDIA_URL:
+    MEDIA_URL = ''.join(['/', MEDIA_URL_PATH, '/'])
 

@@ -2,3 +2,5 @@
 */migrations
 .idea
 venv
+environment/env.sh
+environment/env.local.sh

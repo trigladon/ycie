@@ -1,13 +1,10 @@
 #!/usr/bin/env python
 import os
 import sys
-import environ
 
 
 if __name__ == "__main__":
-    environ.Env.read_env(env_file=".env")
-    env = environ.Env()
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", env.get_value("DJANGO_SETTINGS_MODULE", default="ycie.dev"))
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', os.environ.get('DJANGO_SETTINGS_MODULE', default='ycie.settings'))
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
