@@ -359,19 +359,6 @@ class ApartmentUser(models.Model):
     """
     Through model Apartment User
     """
-    MODEL_ROLES = (
-        (APARTMENT_ROLE_TENANT, _('Tenant')),
-        (APARTMENT_ROLE_OWNER, _('Owner')),
-        (APARTMENT_ROLE_LODGER, _('Lodger')),
-    )
-
-    APARTMENT_STATUS = (
-        (APARTMENT_STATUS_UNDER_CONSIDERATION_GOVERNMENT, _('Under consideration in a government')),
-        (APARTMENT_STATUS_UNDER_CONSIDERATION_HOUSE, _('Under consideration in a house owner')),
-        (APARTMENT_STATUS_BLOCKED, _('Blocked')),
-        (APARTMENT_STATUS_BLOCKED, _('Accepted')),
-    )
-
     apartment = models.ForeignKey(Apartment, verbose_name=_('Apartment'), null=False, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('User'), null=False, on_delete=models.CASCADE)
     role = models.CharField(_('Role'), choices=MODEL_ROLES, default=APARTMENT_ROLE_LODGER, null=False, max_length=15)

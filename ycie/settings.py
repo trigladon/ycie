@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -26,7 +26,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', default=False)
 
 ALLOWED_HOSTS = ['127.0.0.1']
-
 
 # Application definition
 
@@ -50,10 +49,31 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'application.middleware.LocaleMiddleware',
 ]
+
+LANGUAGE_COOKIE_NAME = 'language'
 
 ROOT_URLCONF = 'ycie.urls'
 
+TIME_ZONE = "UTC"
+USE_I18N = True
+USE_L10N = True
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),  # or your custom path
+)
+
+LANGUAGE_CODE = 'ru'
+
+LANGUAGES = (
+    # Translators: This is languages in setting
+    ('en', _('English')),
+    ('ru', _('Russian')),
+
+)
+
+SESSION_COOKIE_HTTPONLY = True
 
 TEMPLATES = [
     {
@@ -62,8 +82,15 @@ TEMPLATES = [
         'OPTIONS': {
             'autoescape': True,
             'match_extension': '.html',
-            'app_dirname': os.path.join(BASE_DIR, 'templates', 'jinja'),
+            'app_dirname': os.path.join(BASE_DIR, 'application', 'templates'),
             'translation_engine': 'django.utils.translation',
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.i18n",
+            ],
             'extensions': [
                 'jinja2.ext.do',
                 'jinja2.ext.loopcontrols',
@@ -99,9 +126,7 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'ycie.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -131,7 +156,6 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 AUTH_USER_MODEL = 'application.User'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -150,19 +174,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
 
 
 if DEBUG:
@@ -176,16 +189,16 @@ if DEBUG:
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-STATIC_URL_PATH = 'static'
-MEDIA_URL_PATH = 'media'
-STATICFILES_LOCATION = STATIC_URL_PATH
-MEDIA_LOCATION = MEDIA_URL_PATH
 
-STATIC_URL = os.environ.get('STATIC_URL')
-if not STATIC_URL:
-    STATIC_URL = ''.join(['/', STATIC_URL_PATH, '/'])
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
-MEDIA_URL = os.environ.get('MEDIA_URL')
-if not MEDIA_URL:
-    MEDIA_URL = ''.join(['/', MEDIA_URL_PATH, '/'])
+STATICFILES_DIRS = (
+    '/'.join([BASE_DIR, 'application', 'public', 'static']),
+)
 
+STATIC_ROOT = '/'.join([BASE_DIR, 'public', 'static'])
+MEDIA_ROOT = '/'.join([BASE_DIR, 'public', 'media'])
+
+STATICFILES_LOCATION = STATIC_ROOT
+MEDIA_LOCATION = MEDIA_ROOT

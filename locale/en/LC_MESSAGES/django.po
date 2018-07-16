@@ -1,0 +1,305 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-15 18:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: application/models.py:30
+msgid "Email"
+msgstr ""
+
+#: application/models.py:31
+msgid "Fax"
+msgstr ""
+
+#: application/models.py:32
+msgid "Zip"
+msgstr ""
+
+#: application/models.py:33
+msgid "Legal address"
+msgstr ""
+
+#: application/models.py:34
+msgid "Physical address"
+msgstr ""
+
+#: application/models.py:38 application/models.py:108 application/models.py:276
+msgid "Company"
+msgstr ""
+
+#: application/models.py:39 application/models.py:321 application/models.py:363
+msgid "User"
+msgstr ""
+
+#: application/models.py:42
+msgid "Id object"
+msgstr ""
+
+#: application/models.py:43 application/models.py:148 application/models.py:235
+msgid "Type"
+msgstr ""
+
+#: application/models.py:44
+msgid "Model"
+msgstr ""
+
+#: application/models.py:45
+msgid "Data"
+msgstr ""
+
+#: application/models.py:47 application/models.py:105 application/models.py:237
+#: application/models.py:280 application/models.py:344
+#: application/models.py:389 application/models.py:414
+msgid "Create date"
+msgstr ""
+
+#: application/models.py:50
+msgid "Contact"
+msgstr ""
+
+#: application/models.py:51 templates/particle/navbar.html:28
+msgid "Contacts"
+msgstr ""
+
+#: application/models.py:68
+msgid "username"
+msgstr ""
+
+#: application/models.py:69
+msgid "email address"
+msgstr ""
+
+#: application/models.py:101
+msgid "Organization name"
+msgstr ""
+
+#: application/models.py:102
+msgid "UNP"
+msgstr ""
+
+#: application/models.py:103 application/models.py:215
+msgid "City"
+msgstr ""
+
+#: application/models.py:104 application/models.py:236
+#: application/models.py:279 application/models.py:343
+#: application/models.py:388 application/models.py:413
+msgid "Update date"
+msgstr ""
+
+#: application/models.py:109
+msgid "Companies"
+msgstr ""
+
+#: application/models.py:139
+msgid "Category news"
+msgstr ""
+
+#: application/models.py:140 application/models.py:417
+#: application/models.py:418
+msgid "News"
+msgstr ""
+
+#: application/models.py:143 application/models.py:233
+#: application/models.py:258 application/models.py:384
+#: application/models.py:409
+msgid "Title"
+msgstr ""
+
+#: application/models.py:144
+msgid "File"
+msgstr ""
+
+#: application/models.py:146
+msgid "Real file name"
+msgstr ""
+
+#: application/models.py:147 application/models.py:187
+#: application/models.py:212
+msgid "Is published"
+msgstr ""
+
+#: application/models.py:150
+msgid "updated date"
+msgstr ""
+
+#: application/models.py:151
+msgid "created date"
+msgstr ""
+
+#: application/models.py:154
+msgid "Asset"
+msgstr ""
+
+#: application/models.py:155
+msgid "Assets"
+msgstr ""
+
+#: application/models.py:184
+msgid "Name"
+msgstr ""
+
+#: application/models.py:185 application/models.py:210
+msgid "English Name"
+msgstr ""
+
+#: application/models.py:186 application/models.py:211
+msgid "Short name"
+msgstr ""
+
+#: application/models.py:190
+msgid "Country"
+msgstr ""
+
+#: application/models.py:191
+msgid "Countries"
+msgstr ""
+
+#: application/models.py:208
+msgid "County id"
+msgstr ""
+
+#: application/models.py:209
+msgid "City name"
+msgstr ""
+
+#: application/models.py:216
+msgid "Cities"
+msgstr ""
+
+#: application/models.py:234 application/models.py:259
+#: application/models.py:386 application/models.py:411
+msgid "Description"
+msgstr ""
+
+#: application/models.py:256
+msgid "Users"
+msgstr ""
+
+#: application/models.py:257
+msgid "Voting"
+msgstr ""
+
+#: application/models.py:260
+msgid "Amount"
+msgstr ""
+
+#: application/models.py:263 application/models.py:264
+msgid "VotingOptions"
+msgstr ""
+
+#: application/models.py:277
+msgid "Address"
+msgstr ""
+
+#: application/models.py:278
+msgid "Is multi apartments?"
+msgstr ""
+
+#: application/models.py:283 application/models.py:383
+msgid "House"
+msgstr ""
+
+#: application/models.py:284
+msgid "Houses"
+msgstr ""
+
+#: application/models.py:302 application/models.py:322
+msgid "Government"
+msgstr ""
+
+#: application/models.py:303
+msgid "Governments"
+msgstr ""
+
+#: application/models.py:317
+msgid "Admin"
+msgstr ""
+
+#: application/models.py:318
+msgid "Manager"
+msgstr ""
+
+#: application/models.py:323 application/models.py:364
+msgid "Role"
+msgstr ""
+
+#: application/models.py:324 application/models.py:367
+msgid "Date joined "
+msgstr ""
+
+#: application/models.py:340
+msgid "House id"
+msgstr ""
+
+#: application/models.py:341
+msgid "Number"
+msgstr ""
+
+#: application/models.py:347 application/models.py:362
+msgid "Apartment"
+msgstr ""
+
+#: application/models.py:348
+msgid "Apartments"
+msgstr ""
+
+#: application/models.py:365
+msgid "Status"
+msgstr ""
+
+#: application/models.py:385 application/models.py:410
+msgid "Shot description"
+msgstr ""
+
+#: application/models.py:387 application/models.py:412
+msgid "Is published?"
+msgstr ""
+
+#: application/models.py:392 application/models.py:407
+msgid "Category"
+msgstr ""
+
+#: application/models.py:393
+msgid "Categories"
+msgstr ""
+
+#: templates/particle/navbar.html:16
+msgid "Home"
+msgstr ""
+
+#: templates/particle/navbar.html:19
+msgid "About"
+msgstr ""
+
+#: templates/particle/navbar.html:22
+msgid "Sign in"
+msgstr ""
+
+#: templates/particle/navbar.html:25
+msgid "Sign up"
+msgstr ""
+
+#. Translators: This is languages in setting
+#: ycie/settings.py:69
+msgid "Russian"
+msgstr ""
+
+#: ycie/settings.py:70
+msgid "English"
+msgstr ""

@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
+from . import settings
+
+urlpatterns = i18n_patterns(
+    path(r'', include('application.urls'), name='app'),
     path('admin/', admin.site.urls),
-    path(r'', include('application.urls')),
-]
+)
+
+urlpatterns += static(prefix=settings.STATIC_URL, document_root=settings.STATIC_ROOT, show_indexes=True)
+urlpatterns += static(prefix=settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

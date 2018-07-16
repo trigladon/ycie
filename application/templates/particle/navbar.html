@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url('index') }}">
+            <img class="etcodes-normal-logo" src="{{ static('images/logo.png') }}" width="84" height="22" alt="Logo">
+            <img class="etcodes-mobile-logo" src="{{ static('images/logo.png') }}" width="84" height="22" alt="Logo">
+
+        </a>
+        <button class="navbar-toggler hamburger-menu-btn" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span>toggle menu</span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mega_menu_holder">
+                    <a href="{{ url('index') }}" class="nav-link">{{ _('Home') }}</a>
+                </li>
+                <li class="nav-item mega_menu_holder">
+                    <a href="{{ url('about') }}" class="nav-link">{{ _('About') }}</a>
+                </li>
+                <li class="nav-item mega_menu_holder">
+                    <a href="{{ url('sign_in') }}" class="nav-link">{{ _('Sign in') }}</a>
+                </li>
+                <li class="nav-item mega_menu_holder">
+                    <a href="{{ url('sign_up') }}" class="nav-link">{{ _('Sign up') }}</a>
+                </li>
+                <li class="nav-item mega_menu_holder">
+                    <a href="{{ url('contacts') }}" class="nav-link">{{ _('Contacts') }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+    <!-- Site Title -->
+    <title>{% block title %} YCIE {% endblock %}</title>
+    {% include 'particle/css.html' %}
+</head>
+
+<body>
+    <div id="main-content">
+        <!-- Header -->
+        <!-- Navbar -->
+        {% if request.user.is_authenticated %}
+            {% include 'particle/navbar-auth.html' %}
+        {% else %}
+            {% include 'particle/navbar.html' %}
+        {% endif %}
+        <!-- End Header -->
+        <!-- main -->
+        <div class="page-container scene-main scene-main--fade_In">
+
+            {% block content %}{% endblock %}
+            <!-- footer  -->
+            {% include 'particle/footer.html' %}
+        </div>
+        <!-- End main -->
+    </div>
+    <!-- ================================================== -->
+    <!-- Placed js files at the end of the document so the pages load faster -->
+    {% include 'particle/js.html' %}
+</body>
+
+</html>
