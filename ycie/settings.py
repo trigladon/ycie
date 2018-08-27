@@ -84,12 +84,13 @@ TEMPLATES = [
             'match_extension': '.html',
             'app_dirname': os.path.join(BASE_DIR, 'application', 'templates'),
             'translation_engine': 'django.utils.translation',
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-                "django.template.context_processors.i18n",
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
+                'application.context_processors.settings',
             ],
             'extensions': [
                 'jinja2.ext.do',
@@ -186,6 +187,8 @@ if DEBUG:
     INSTALLED_APPS = INSTALLED_APPS + [
         'debug_toolbar',
     ]
+
+SITE_NAME = 'YCIE'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/

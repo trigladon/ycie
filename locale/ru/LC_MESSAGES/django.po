@@ -72,11 +72,11 @@ msgstr ""
 
 #: application/models.py:50
 msgid "Contact"
-msgstr ""
+msgstr "Контакт"
 
 #: application/models.py:51 templates/particle/navbar.html:28
 msgid "Contacts"
-msgstr ""
+msgstr "Контакты"
 
 #: application/models.py:68
 msgid "username"
@@ -207,7 +207,7 @@ msgstr ""
 
 #: application/models.py:277
 msgid "Address"
-msgstr ""
+msgstr "Адресс"
 
 #: application/models.py:278
 msgid "Is multi apartments?"
@@ -215,71 +215,71 @@ msgstr ""
 
 #: application/models.py:283 application/models.py:383
 msgid "House"
-msgstr ""
+msgstr "Дом"
 
 #: application/models.py:284
 msgid "Houses"
-msgstr ""
+msgstr "Дома"
 
 #: application/models.py:302 application/models.py:322
 msgid "Government"
-msgstr ""
+msgstr "Управлние"
 
 #: application/models.py:303
 msgid "Governments"
-msgstr ""
+msgstr "Управления"
 
 #: application/models.py:317
 msgid "Admin"
-msgstr ""
+msgstr "Админимстратор"
 
 #: application/models.py:318
 msgid "Manager"
-msgstr ""
+msgstr "Менеджер"
 
 #: application/models.py:323 application/models.py:364
 msgid "Role"
-msgstr ""
+msgstr "Роль"
 
 #: application/models.py:324 application/models.py:367
 msgid "Date joined "
-msgstr ""
+msgstr "Дата присоединения"
 
 #: application/models.py:340
 msgid "House id"
-msgstr ""
+msgstr "Дом id"
 
 #: application/models.py:341
 msgid "Number"
-msgstr ""
+msgstr "Номер"
 
 #: application/models.py:347 application/models.py:362
 msgid "Apartment"
-msgstr ""
+msgstr "апартаменты"
 
 #: application/models.py:348
 msgid "Apartments"
-msgstr ""
+msgstr "Апартаменты"
 
 #: application/models.py:365
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: application/models.py:385 application/models.py:410
 msgid "Shot description"
-msgstr ""
+msgstr "Короткое опсание?"
 
 #: application/models.py:387 application/models.py:412
 msgid "Is published?"
-msgstr ""
+msgstr "Опбуликован?"
 
 #: application/models.py:392 application/models.py:407
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: application/models.py:393
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
 #: templates/particle/navbar.html:16
 msgid "Home"

@@ -3,7 +3,14 @@ from django.conf import settings
 
 from storages.backends.s3boto import S3BotoStorage
 
-from .helper import get_storage_path, get_server_storage_path
+from application.storage.helper import get_storage_path, get_server_storage_path
+
+
+__all__ = (
+    'StaticStorage',
+    'FileStorage',
+    'get_file_storage',
+)
 
 
 class StaticStorage(S3BotoStorage):

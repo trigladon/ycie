@@ -1,13 +1,3 @@
-CONTACT_TYPE_EMAIL = 'email'
-CONTACT_TYPE_PHONE = 'phone'
-CONTACT_TYPE_LEGAL_ADDRESS = 'legal address'
-CONTACT_TYPE_PHYSICAL_ADDRESS = 'physical address'
-CONTACT_TYPE_FAX = 'fax'
-CONTACT_TYPE_ZIP = 'zip'
-
-CONTACT_MODEL_USER = 'user'
-CONTACT_MODEL_COMPANY = 'company'
-
 ASSET_TYPE_CATEGORY_NEWS = "category_news"
 ASSET_TYPE_NEWS = "news"
 
